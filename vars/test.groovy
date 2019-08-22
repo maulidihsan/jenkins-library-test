@@ -19,7 +19,9 @@ def call( Map param ) {
             }
             stage('Deliver') {
                 steps {
-                    sh './jenkins/scripts/deliver.sh'
+                    sh 'ssh root@"${hostname}" "rm -rf /opt/dist && mkdir -p /opt/dist"'
+                    sh 'scp target/${NAME}-${VERSION}.jar root@"${hostname}":/opt/dist'
+                    sh 'ssh root@"${hostname}" "java -jar /opt/dist/${NAME}-${VERSION}.jar"'
                 }
             }
         }
