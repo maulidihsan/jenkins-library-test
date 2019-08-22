@@ -1,23 +1,25 @@
-pipeline {
-    agent {
-        node {
-            label 'jenkins'
-        }
-    }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
+def call() {
+    pipeline {
+        agent {
+            node {
+                label 'jenkins'
             }
         }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
+        stages {
+            stage('Build') {
+                steps {
+                    sh 'mvn -B -DskipTests clean package'
+                }
             }
-        }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
+            stage('Test') {
+                steps {
+                    sh 'mvn test'
+                }
+            }
+            stage('Deliver') {
+                steps {
+                    sh './jenkins/scripts/deliver.sh'
+                }
             }
         }
     }
