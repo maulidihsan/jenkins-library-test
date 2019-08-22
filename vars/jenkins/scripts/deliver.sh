@@ -26,7 +26,8 @@ ssh root@"${hostname}" "rm -rf /opt/dist && mkdir -p /opt/dist"
 set +x
 
 set -x
-scp target/${NAME}-${VERSION}.jar root@"${hostname}":/opt/dist
+scp target/${NAME}-${VERSION}.jar root@"${hostname}":/opt/dist/
+ssh root@"${hostname}" "touch success.txt"
 set +x
 
 set -x
