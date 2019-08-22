@@ -21,6 +21,7 @@ VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
 set -x
+echo '"${hostname}" ${NAME}'
 ssh root@"${hostname}" "rm -rf /opt/dist && mkdir -p /opt/dist"
 set +x
 
