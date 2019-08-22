@@ -1,4 +1,5 @@
 def call( Map param ) {
+    def hostname = param.hostname
     pipeline {
         agent {
             node {
