@@ -20,6 +20,14 @@ set -x
 VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
+set -x
 ssh root@"${hostname}" "rm -rf /opt/dist && mkdir -p /opt/dist"
+set +x
+
+set -x
 scp target/${NAME}-${VERSION}.jar root@"${hostname}":/opt/dist
+set +x
+
+set -x
 ssh root@"${hostname}" "java -jar /opt/dist/${NAME}-${VERSION}.jar"
+set +x
